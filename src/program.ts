@@ -7,15 +7,15 @@ const FizzBuzz = (req: Request, res: Response) => {
     if (!number) return res.send({result: 'Check is required!'});
     if (isNaN(Number(number))) return res.send({result: 'Check must be number!'});
 
-    let output: string[] = [];
+    let output: Array<any> = [];
     for (let i: number = 1; i <= number; i++) {
         if (i % 3 === 0 && i % 5 === 0) output.push('FizzBuzz');
         else if (i % 3 === 0) output.push('Fizz');
         else if (i % 5 === 0) output.push('Buzz');
-        else output.push(i.toString())
+        else output.push(i);
     }
-    return res.send({result: output.join(', ')});
-};
+    return res.send({result: output});
+}
 
 const Palindrome = (req: Request, res: Response) => {
     const string: string = req?.body?.check;
@@ -27,9 +27,9 @@ const Palindrome = (req: Request, res: Response) => {
         if (string[i] !== string[len - 1 - i]) {
             output = 'Not a Palindrome';
         }
-    };
+    }
     return res.send({result: output});
-};
+}
 
 export default {
     FizzBuzz,
